@@ -1,21 +1,21 @@
 PFont pf_thin;
 PFont pf_regular;
 PFont pf_number;
-
-final float scaler = .3;
-PGraphics p;
 static PApplet inf;
+
+final float scaler = 1;
+PGraphics p;
 float position = 0; // from 0 - 1
 float l1 = 1;
-
 float l4 = 50;
 
 int w = 1080;
 int h = 1920;
 float t = 0;
-PImage debug_img ;
-float totalLength = 6000;
-float screenWidth = 500;
+PImage debug_img;
+PImage follower;
+float screenWidth = 680;
+float totalLength = 5760 - screenWidth;
 float pWidth = float(w) / screenWidth;
 float totalPixels = floor(pWidth * totalLength);
 float posEase = 0;
@@ -35,34 +35,27 @@ void setup() {
   frameRate(60);
   smooth(8);
   debug_img = loadImage("debug.JPG");
-  new render_dot(0, h / 3, 1);
-  new render_dot(1000, h / 3, 1);
-  new qingdao_map(5000, h / 3, 3);
-  new render_dot(3000, h / 3, 1);
-  new render_dot(4000, h / 3, 1);
-  new render_dot(5000, h / 3, 1);
-  new render_dot(6000, h / 3, 1);
- 
-  new render_dot(0, h / 5, 3);
-  new render_dot(1000, h / 5, 3);
-  new render_dot(2000, h / 5, 3);
-  new render_dot(3000, h / 5, 3);
-  new render_dot(4000, h / 5, 3);
-  new render_dot(5000, h / 5, 3);
-  new render_dot(6000, h / 5, 3);
- 
+  follower = loadImage("kitchen_wall.jpg");
+  new qingdao_map(4800, h / 3, 2.5);
   initSprites();
   p.hint(DISABLE_OPTIMIZED_STROKE);
 }
 
 void draw() {
-  position = ease(position, (mouseX / scaler) / w * 1, 0.03);
+  position = ease(position, 1 - (mouseX / scaler) / w * 1, 0.03);
   posEase = position * totalPixels;
   t = float(millis()) / 1000;
   renderP();
-  background(0);
+  background(255);
   scale(scaler);
-  image(debug_img, 0, 0, w, h);
+  pushMatrix();
+  
+  translate(-posEase, 0);
+  image(follower, -120 * pWidth, 0, 1920 * 6000 / 1210, 1920);
+  //println(8192 * 1.2315586915);
+  
+  popMatrix();
+  //image(debug_img, 0, 0, w, h);
   blendMode(MULTIPLY);
   image(p, 0, 0);
   blendMode(NORMAL);
@@ -71,6 +64,8 @@ void draw() {
 void renderP() {
   p.beginDraw();
   p.fill(255, 200);
+  p.strokeCap(PROJECT);
+  p.strokeJoin(PROJECT);
   p.noStroke();
   p.rect(0, 0, w, h);
 
