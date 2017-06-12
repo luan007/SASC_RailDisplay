@@ -20,7 +20,7 @@ void drawScroller() {
     //p.point(0, 18 * sx);
     p.popMatrix();
     
-    p.strokeWeight(2);
+    p.strokeWeight(5);
     p.stroke(0, sx * 150);
     p.pushMatrix();
     p.translate(x * 4, 0);

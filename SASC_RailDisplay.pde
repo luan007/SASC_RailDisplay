@@ -1,7 +1,8 @@
 PFont pf_thin;
 PFont pf_regular;
+PFont pf_number;
 
-final float scaler = 0.3;
+final float scaler = .3;
 PGraphics p;
 static PApplet inf;
 float position = 0; // from 0 - 1
@@ -20,15 +21,16 @@ float totalPixels = floor(pWidth * totalLength);
 float posEase = 0;
 
 void settings() {
-  size(int(1080 * scaler), int(1920 * scaler), OPENGL);
+  size(int(1080 * scaler), int(1920 * scaler), P3D);
   println(totalPixels);
 }
 
 void setup() {
   inf = this;
   qingdao.init();
-  p = createGraphics(1080, 1920, OPENGL);
+  p = createGraphics(1080, 1920, P3D);
   pf_regular = createFont("PingFangSC-Regular", 48, true);
+  pf_number = createFont("DIN-Black", 48, true);
   pixelDensity(2);
   frameRate(60);
   smooth(8);
@@ -50,7 +52,7 @@ void setup() {
   new render_dot(6000, h / 5, 3);
  
   initSprites();
-  
+  p.hint(DISABLE_OPTIMIZED_STROKE);
 }
 
 void draw() {
@@ -60,7 +62,7 @@ void draw() {
   renderP();
   background(0);
   scale(scaler);
-  image(debug_img, 0, 0);
+  image(debug_img, 0, 0, w, h);
   blendMode(MULTIPLY);
   image(p, 0, 0);
   blendMode(NORMAL);
@@ -71,6 +73,10 @@ void renderP() {
   p.fill(255, 200);
   p.noStroke();
   p.rect(0, 0, w, h);
+
+  renderSprites();
+  drawScroller();
+  
   p.pushMatrix(); 
   {
     p.translate(0, h / 1.2);
@@ -91,8 +97,5 @@ void renderP() {
     }
   }
   p.popMatrix();
-
-  renderSprites();
-  drawScroller();
   p.endDraw();
 }
