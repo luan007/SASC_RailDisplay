@@ -1,6 +1,7 @@
 PFont pf_thin;
 PFont pf_regular;
 PFont pf_number;
+PFont pf_number_l;
 static PApplet inf;
 
 final float scaler = 0.4;
@@ -31,6 +32,7 @@ void setup() {
   p = createGraphics(1080, 1920, P3D);
   pf_regular = createFont("PingFangSC-Regular", 48, true);
   pf_number = createFont("DIN-Black", 48, true);
+  pf_number_l = createFont("DIN-Black", 120, true);
   pixelDensity(2);
   frameRate(60);
   smooth(8);
@@ -38,6 +40,8 @@ void setup() {
   follower = loadImage("kitchen_wall.jpg");
   new qingdao_map(4800, h / 3, 2.5);
   new huaian(3100, 0, 2.4);
+  new dalian(1200, 0, 1.9);
+  new beijing(0, 0, 1);
   initSprites();
   p.hint(DISABLE_OPTIMIZED_STROKE);
 }
@@ -52,11 +56,11 @@ void draw() {
   pushMatrix();
   
   translate(-posEase, 0);
-  image(follower, -120 * pWidth, 0, 1920 * 6000 / 1210, 1920);
+  //image(follower, -120 * pWidth, 0, 1920 * 6000 / 1210, 1920);
   //println(8192 * 1.2315586915);
   
   popMatrix();
-  //image(debug_img, 0, 0, w, h);
+  image(debug_img, 0, 0, w, h);
   blendMode(MULTIPLY);
   image(p, 0, 0);
   blendMode(NORMAL);

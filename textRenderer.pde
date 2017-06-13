@@ -1,3 +1,41 @@
+
+class tinyTextParagraph extends textRenderer {
+  float w;
+  float h;
+  boolean invert;
+  String bo;
+  tinyTextParagraph(float x, float y, float w, float h, float layer, String text, boolean invert, String bo) {
+    super(x, y, layer, text);
+    this.bo = bo;
+    this.w = w;
+    this.invert = invert;
+    this.h = h;
+  }
+
+  void draw() {
+    if (sc <= 0) return;
+    p.pushMatrix();
+    p.translate(xoffset - w / 2, y);
+    p.rectMode(0);
+    if (!invert) {
+      p.fill(sin(t) * 50 + 180, 255, 255, sc * 255);
+    } else {
+      p.fill(0, sin(t) * 150, sin(t) * 200, sc * 255);
+    }
+    
+    p.textAlign(RIGHT, TOP);
+    p.textFont(pf_number_l, 130);
+    p.text(this.bo, -30, -58);
+    
+    p.rect(-20, -20, 10 + w, 10 + h);
+    p.fill(invert? 255 : 0, sc * 255);
+    p.textAlign(LEFT, TOP);
+    p.textFont(pf_number, 17);
+    p.text(this.text, 0, 0);
+    p.popMatrix();
+  }
+}
+
 class textParagraph extends textRenderer {
   float w;
   float h;
@@ -12,7 +50,7 @@ class textParagraph extends textRenderer {
   void draw() {
     if (sc <= 0) return;
     p.pushMatrix();
-    p.translate(xoffset, y);
+    p.translate(xoffset - w / 2, y);
     p.noStroke();
     p.fill(invert? 255 : 0, sc * 255);
     p.rectMode(0);
