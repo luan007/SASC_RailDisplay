@@ -30,13 +30,17 @@ class render_dot implements IRenderable {
     
   }
   
-  void render() {
-    //calculate relative position
+  void calculatePosition() {
     xoffset = -position * totalPixels / layer + x * pWidth / layer + w / 2;
     absSc = xoffset / w;
     psc = scaler(xoffset, 0);
     sc = scaler(xoffset, 0.3);
     ssc = sq(sc);
+  }
+  
+  void render() {
+    //calculate relative position
+    this.calculatePosition();
     this.draw();
   }
   

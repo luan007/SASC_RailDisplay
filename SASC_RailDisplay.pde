@@ -3,7 +3,7 @@ PFont pf_regular;
 PFont pf_number;
 static PApplet inf;
 
-final float scaler = 1;
+final float scaler = 0.4;
 PGraphics p;
 float position = 0; // from 0 - 1
 float l1 = 1;
@@ -37,6 +37,7 @@ void setup() {
   debug_img = loadImage("debug.JPG");
   follower = loadImage("kitchen_wall.jpg");
   new qingdao_map(4800, h / 3, 2.5);
+  new huaian(3100, 0, 2.4);
   initSprites();
   p.hint(DISABLE_OPTIMIZED_STROKE);
 }

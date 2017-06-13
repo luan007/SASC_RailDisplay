@@ -16,12 +16,11 @@ class qingdao_map extends render_dot {
     for(int i = 0; i < 100; i++) {
       new qingdao_tinymarker(5200 + random(-180, 300), 700 + random(-500, 600), 1);
     }
-    
     new qingdao_marker(5180, 700, 1, "4251家\n“大笑”饭店");
     new qingdao_marker(5250, 1200, 1, "1005家\n小饭桌");
-    
-    
+    new markerRenderer(4950, 1550, 300, 300, 1.1, "扫码体验");
     new textRenderer(5400, 1700, 3, "山东省青岛市制作食安地图\n推行“寻找笑脸就餐”行动。");
+    new textParagraph(5050, 100, 550, 180, 1, "引导消费者到食品安全管理状况好的饭店就餐。\n市民只要通过食药局官微（qd12331）\n进入食安地图，就能查看、搜索，并导航前往\n食品安全管理状况良好的饭店和备案的小饭桌。", false);
   }
 
   void draw() {
@@ -78,6 +77,8 @@ class qingdao_tinymarker extends render_dot {
     p.rect(0 ,0, 7, 7);
     p.popMatrix();
     p.textFont(pf_number, 15);
+    
+    p.textAlign(LEFT, CENTER);
     p.fill(0, 180, 255, (sin(x / 100 + t * 5)) * 255);
     p.text("A级", 30, 0);
     p.popMatrix();
