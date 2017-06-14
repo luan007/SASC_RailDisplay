@@ -4,7 +4,7 @@ class dalian extends render_dot {
     super(x, y, layer);
     new qingdao_marker(x + 400, 300, 1.2, "24家\n餐饮管理公司");
     new qingdao_marker(x + 700, 300, 1.2, "80家\n覆盖学校食堂");
-    new qingdao_marker(x + 100, 300, 1.2, "100%\n学校食堂\n明厨亮灶率");
+    new qingdao_marker(x + 100, 300, 1.2, "学校食堂\n全面明厨亮灶");
     new textRenderer(x + 500, 1700, 3, "大连中央厨房进校园”");
     new textParagraph(x - 300, 600, 850, 260, 1.2,
     "大连市自2014年开始在金普新区开展“中央厨房进校园”试点工作。\n联合教育行政部门，确定了\n“政府投资主办、学校承担食品安全第一责任、\n餐饮管理公司具体运营管理并对所供食品安全负责”的校餐供应模式。\n餐饮管理公司对所管理的学校食堂实行中央厨房统一采购、统一初加工，\n并将半成品配送至各学校食堂现场烹饪供餐。"

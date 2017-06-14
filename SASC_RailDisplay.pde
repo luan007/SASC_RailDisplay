@@ -4,7 +4,7 @@ PFont pf_number;
 PFont pf_number_l;
 static PApplet inf;
 
-final float scaler = 0.4;
+final float scaler = 1;
 PGraphics p;
 float position = 0; // from 0 - 1
 float l1 = 1;
@@ -22,7 +22,8 @@ float totalPixels = floor(pWidth * totalLength);
 float posEase = 0;
 
 void settings() {
-  size(int(1080 * scaler), int(1920 * scaler), P3D);
+  //size(int(1080 * scaler), int(1920 * scaler), P3D);
+  fullScreen(2, P3D);
   println(totalPixels);
 }
 
@@ -60,10 +61,10 @@ void draw() {
   //println(8192 * 1.2315586915);
   
   popMatrix();
-  image(debug_img, 0, 0, w, h);
-  blendMode(MULTIPLY);
+  //image(debug_img, 0, 0, w, h);
+  //blendMode(MULTIPLY);
   image(p, 0, 0);
-  blendMode(NORMAL);
+  //blendMode(NORMAL);
 }
 
 void renderP() {
